@@ -188,7 +188,7 @@ h1, h2, h3, p { margin: 0; }
   width: min(100%, calc(100cqh * var(--art-ratio)));
   min-width: 0;
   box-shadow: var(--art-shadow);
-  background: #fff;
+  background: var(--art-background);
 }
 .art-paper[data-transparent] {
   background: conic-gradient(#fff 25%, #e9e9f2 0 50%, #fff 0 75%, #e9e9f2 0) 0 0 / 20px 20px;

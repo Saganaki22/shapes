@@ -184,7 +184,10 @@ export default function App() {
         <div className="art-stage">
           <div className="art-paper" role="img" aria-label={`${pattern.name} artwork preview`}
             data-transparent={preview.palette.transparent || undefined}
-            style={{ '--art-ratio': preview.width / preview.height } as React.CSSProperties}
+            style={{
+              '--art-ratio': preview.width / preview.height,
+              '--art-background': preview.palette.paper,
+            } as React.CSSProperties}
             dangerouslySetInnerHTML={{ __html: svg }} />
         </div>
 
