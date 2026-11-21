@@ -2,6 +2,7 @@ import { memo, useEffect, useRef, useState } from 'react';
 import { ChevronDown, Search } from 'lucide-react';
 import { thumbnail } from './engine';
 import type { Category, PatternDefinition } from './patterns/model';
+import { referenceNames } from './patterns/referenceNames';
 
 const thumbnailSources = new Map<string, string>();
 
@@ -42,7 +43,7 @@ export const PatternLibrary = memo(function PatternLibrary({ patterns, selected,
   const categories = [...new Set(patterns.map((pattern) => pattern.category))].sort();
   const search = query.trim().toLowerCase();
   const visible = patterns.filter((pattern) => (!category || pattern.category === category) &&
-    `${pattern.name} ${pattern.category} ${pattern.description}`.toLowerCase().includes(search));
+    `${pattern.name} ${referenceNames[pattern.id] ?? ''} ${pattern.category} ${pattern.description}`.toLowerCase().includes(search));
   return <aside className="pattern-library" aria-label="Pattern library" data-active={active}>
     <div className="library-head">
       <div className="library-title"><h2>Patterns</h2><span aria-label={`${visible.length} patterns`}>{visible.length}</span></div>
@@ -62,11 +63,16 @@ export const PatternLibrary = memo(function PatternLibrary({ patterns, selected,
     <div className="pattern-scroll">
       {visible.length === 0 && <p className="empty-state">No matching patterns.</p>}
       <div className="pattern-grid">
-        {visible.map((pattern) => <button type="button" key={pattern.id} className="pattern-card" aria-pressed={pattern.id === selected}
-          onClick={() => onSelect(pattern)} title={pattern.name}>
-          <Thumbnail pattern={pattern} />
-          <span className="pattern-card-name">{pattern.name}</span>
-        </button>)}
+        {visible.map((pattern) => {
+          const reference = referenceNames[pattern.id];
+          const match = search && reference !== pattern.name && reference?.toLowerCase().includes(search);
+          return <button type="button" key={pattern.id} className="pattern-card" aria-pressed={pattern.id === selected}
+            onClick={() => onSelect(pattern)} title={pattern.name}>
+            <Thumbnail pattern={pattern} />
+            <span className="pattern-card-name">{pattern.name}</span>
+            {match && <span className="pattern-card-reference">{reference}</span>}
+          </button>;
+        })}
       </div>
     </div>
   </aside>;

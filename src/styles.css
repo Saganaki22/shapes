@@ -153,6 +153,7 @@ h1, h2, h3, p { margin: 0; }
 .thumbnail { display: block; overflow: hidden; aspect-ratio: 4 / 3; background: #eee8f8; border-radius: 5px; }
 .thumbnail img { display: block; width: 100%; height: 100%; object-fit: cover; }
 .pattern-card-name { display: block; padding: 7px 3px 5px; font-size: .78rem; font-weight: 690; line-height: 1.16; overflow-wrap: anywhere; }
+.pattern-card-reference { display: block; padding: 0 3px 5px; font-size: .75rem; color: var(--muted); line-height: 1.2; overflow-wrap: anywhere; }
 .empty-state { color: var(--muted); padding: 15px 0; font-size: .9rem; }
 
 .workbench {
