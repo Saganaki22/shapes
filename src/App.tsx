@@ -3,6 +3,7 @@ import { ChevronDown, Dice5, Grid2X2, Palette, Pause, Play, RotateCcw, SlidersHo
 import { ColorControls, NumberEntry, PatternControl, Slider } from './Controls';
 import { ExportDialog } from './ExportDialog';
 import { PatternLibrary } from './PatternLibrary';
+import { ThemeToggle } from './ThemeToggle';
 import { initialPalette, initialSize, parseHex, svgArtwork } from './engine';
 import type { ArtworkSettings } from './engine';
 import { patterns } from './patterns';
@@ -153,7 +154,10 @@ export default function App() {
   return <div className="app-shell">
     <header className="topbar">
       <Brand />
-      <ExportDialog pattern={pattern} settings={settings} onOpen={() => setPlaying(false)} />
+      <div className="header-actions">
+        <ThemeToggle />
+        <ExportDialog pattern={pattern} settings={settings} onOpen={() => setPlaying(false)} />
+      </div>
     </header>
 
     <main className="workspace">

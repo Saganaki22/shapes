@@ -2,6 +2,8 @@
 
 Shapes is a responsive studio for original generative SVG art. Choose a pattern, adjust its geometry and colors, then export an editable SVG or a PNG. The browser renders the artwork and saves the current editing settings locally.
 
+The header theme switch changes the editor between light and dark mode. Your theme choice is saved on this device.
+
 ## Run locally
 
 Use Node.js 24.
